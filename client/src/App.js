@@ -1,5 +1,27 @@
+import styled from "styled-components/macro";
+import Menu from "./components/Menu";
+import Navbar from "./components/Navbar";
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const Main = styled.div`
+  flex: 7;
+`;
+
+const Wrapper = styled.div``;
+
 const App = () => {
-  return <div>Hello World!</div>;
+  return (
+    <Container>
+      <Menu />
+      <Main>
+        <Navbar />
+        <Wrapper>Videos</Wrapper>
+      </Main>
+    </Container>
+  );
 };
 
 export default App;
