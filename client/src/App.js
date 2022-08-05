@@ -8,18 +8,20 @@ const Container = styled.div`
 
 const Main = styled.div`
   flex: 7;
+  background-color: #181818;
 `;
 
 const Wrapper = styled.div`
   padding: 22px 96px;
 `;
+
 const App = () => {
   return (
     <Container>
       <Menu />
       <Main>
         <Navbar />
-        <Wrapper>Videos</Wrapper>
+        <Wrapper>Videos Card</Wrapper>
       </Main>
     </Container>
   );
