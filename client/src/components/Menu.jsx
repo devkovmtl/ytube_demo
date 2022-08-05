@@ -21,7 +21,6 @@ import logo from "../img/logo.png";
 const Container = styled.div`
   flex: 1;
   background: #202020;
-  height: 100vh;
   color: white;
   font-size: 14px;
   position: sticky;
@@ -49,11 +48,35 @@ const Item = styled.div`
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  padding: 7.5px 0px;
 `;
 
 const Hr = styled.hr`
   margin: 15px 0px;
   border: 0.5px solid ${({ theme }) => theme.soft};
+`;
+
+const Login = styled.div``;
+
+const Button = styled.button`
+  padding: 5px 15px;
+  background-color: transparent;
+  border: 1px solid #3ea6ff;
+  color: #3ea6ff;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
 `;
 
 const Menu = () => {
@@ -72,11 +95,13 @@ const Menu = () => {
           <ExploreOutlinedIcon />
           Explore
         </Item>
-
         <Item>
           <SubscriptionsOutlinedIcon />
           Subscriptions
         </Item>
+
+        <Hr />
+
         <Item>
           <VideoLibraryOutlinedIcon />
           Library
@@ -85,6 +110,16 @@ const Menu = () => {
           <HistoryOutlinedIcon />
           History
         </Item>
+
+        <Hr />
+
+        <Login>
+          Sign in to like videos, comment, and subscribe.
+          <Button>
+            <AccountCircleOutlinedIcon /> SIGN IN
+          </Button>
+        </Login>
+
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
@@ -109,6 +144,9 @@ const Menu = () => {
           <LiveTvOutlinedIcon />
           Live
         </Item>
+
+        <Hr />
+
         <Item>
           <SettingsOutlinedIcon />
           Settings
