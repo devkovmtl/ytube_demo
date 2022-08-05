@@ -20,8 +20,8 @@ import logo from "../img/logo.png";
 
 const Container = styled.div`
   flex: 1;
-  background: #202020;
-  color: white;
+  background: ${({ theme }) => theme.bgLight};
+  color: ${({ theme }) => theme.text};
   font-size: 14px;
   position: sticky;
   top: 0;
@@ -75,11 +75,11 @@ const Button = styled.button`
 const Title = styled.h2`
   font-size: 14px;
   font-weight: 500;
-  color: #aaaaaa;
+  color: ${({ theme }) => theme.textSoft};
   margin-bottom: 20px;
 `;
 
-const Menu = () => {
+const Menu = ({ setDarkMode, darkMode }) => {
   return (
     <Container>
       <Wrapper>
@@ -120,6 +120,10 @@ const Menu = () => {
           </Button>
         </Login>
 
+        <Hr />
+
+        <Title>Best Of YTbe</Title>
+
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
@@ -159,7 +163,7 @@ const Menu = () => {
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
-        <Item>
+        <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
           Light Mode
         </Item>
