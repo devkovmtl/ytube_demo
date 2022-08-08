@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components/macro";
+
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
 import { darkTheme, lightTheme } from "./utils/Theme";
+import Home from "./pages/Home";
+import Video from "./pages/Video";
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +30,16 @@ const App = () => {
         <Menu setDarkMode={setDarkMode} darkMode={darkMode} />
         <Main>
           <Navbar />
-          <Wrapper>Videos Card</Wrapper>
+          <Wrapper>
+            <Routes>
+              <Route path="/">
+                <Route index element={Home} />
+                <Route path="video">
+                  <Route path=":id" element={Video} />
+                </Route>
+              </Route>
+            </Routes>
+          </Wrapper>
         </Main>
       </Container>
     </ThemeProvider>
