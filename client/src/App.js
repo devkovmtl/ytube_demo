@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components/macro";
 
 import Menu from "./components/Menu";
