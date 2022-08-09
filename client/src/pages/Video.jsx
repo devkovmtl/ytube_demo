@@ -6,6 +6,8 @@ import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
+import Comments from "../components/Comments";
+
 const Container = styled.div`
   display: flex;
   gap: 24px;
@@ -159,6 +161,8 @@ const Video = () => {
           </ChannelInfo>
           <Subscribe>SUBSCRIBE</Subscribe>
         </Channel>
+        <Hr />
+        <Comments />
       </Content>
       <Recommendation>content</Recommendation>
     </Container>
