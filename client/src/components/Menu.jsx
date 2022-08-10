@@ -15,6 +15,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import { Link } from "react-router-dom";
 
 import logo from "../img/logo.png";
 
@@ -86,14 +87,18 @@ const Menu = ({ setDarkMode, darkMode }) => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src={logo} alt="logo" />
-          YouTube
-        </Logo>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Logo>
+            <Img src={logo} alt="logo" />
+            YouTube
+          </Logo>
+        </Link>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
+        </Link>
         <Item>
           <ExploreOutlinedIcon />
           Explore
@@ -118,9 +123,11 @@ const Menu = ({ setDarkMode, darkMode }) => {
 
         <Login>
           Sign in to like videos, comment, and subscribe.
-          <Button>
-            <AccountCircleOutlinedIcon /> SIGN IN
-          </Button>
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <Button>
+              <AccountCircleOutlinedIcon /> SIGN IN
+            </Button>
+          </Link>
         </Login>
 
         <Hr />
