@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import userRoutes from "./routes/users.js";
 
 dotenv.config();
 
@@ -26,16 +27,7 @@ const connect = () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  return res.json({
-    success: true,
-    message: "OK",
-    error: null,
-    data: {
-      body: "Hello world",
-    },
-  });
-});
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   connect();
