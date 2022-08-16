@@ -44,14 +44,30 @@ export const getUser = async (req, res, next) => {
 };
 
 export const subscribe = async (req, res, next) => {
-  if (req.params.id === req.user.id) {
-  } else {
+  try {
+    await User.findById(req.user.id, {
+      $push: { subscribedUsers: req.params.id },
+    });
+    await User.findByIdAndUpdate(req.params.id, {
+      $inc: { subscribers: 1 },
+    });
+    res.status(200).json("Subscription successfull.");
+  } catch (error) {
+    next(error);
   }
 };
 
 export const unsubscribe = async (req, res, next) => {
-  if (req.params.id === req.user.id) {
-  } else {
+  try {
+    await User.findById(req.user.id, {
+      $pull: { subscribedUsers: req.params.id },
+    });
+    await User.findByIdAndUpdate(req.params.id, {
+      $inc: { subscribers: -1 },
+    });
+    res.status(200).json("Unsubscription successfull.");
+  } catch (error) {
+    next(error);
   }
 };
 
