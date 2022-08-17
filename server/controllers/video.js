@@ -60,3 +60,24 @@ export const getVideo = async (req, res, next) => {
     next(error);
   }
 };
+
+export const addView = async (req, res, next) => {
+  try {
+    await Video.findByIdAndUpdate(req.params.id, {
+      $inc: { views: 1 },
+    });
+
+    res.status(200).json("The view has been increased.");
+  } catch (error) {
+    next(error);
+  }
+};
+
+const randomVideo = async (req, res, next) => {
+  try {
+    const video = await Video.aggregate([{ $sample: { size: 40 } }]);
+    res.status(200).json(videos);
+  } catch (error) {
+    next(error);
+  }
+};
