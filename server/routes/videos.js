@@ -28,6 +28,6 @@ router.get("/trend", trendVideo);
 
 router.get("/random", randomVideo);
 
-router.get("/sub", subVideo);
+router.get("/sub", verifyToken, subVideo);
 
 export default router;

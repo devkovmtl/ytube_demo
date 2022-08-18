@@ -1,4 +1,5 @@
 import Video from "../models/Video.js";
+import User from "../models/User.js";
 import { createError } from "../error.js";
 
 export const addVideo = async (req, res, next) => {
@@ -93,7 +94,7 @@ export const trendVideo = async (req, res, next) => {
 
 export const subVideo = async (req, res, next) => {
   try {
-    const videos = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
     const subscribedChannels = user.subscribedUsers;
 
     const list = await Promise.all(
