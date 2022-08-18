@@ -76,7 +76,7 @@ export const addView = async (req, res, next) => {
 
 export const randomVideo = async (req, res, next) => {
   try {
-    const video = await Video.aggregate([{ $sample: { size: 40 } }]);
+    const videos = await Video.aggregate([{ $sample: { size: 40 } }]);
     res.status(200).json(videos);
   } catch (error) {
     next(error);
@@ -103,7 +103,7 @@ export const subVideo = async (req, res, next) => {
       })
     );
 
-    res.status(200).json(list.flat());
+    res.status(200).json(list.flat().sort((a, b) => b.createdAt - a.createdAt));
   } catch (error) {
     next(error);
   }
