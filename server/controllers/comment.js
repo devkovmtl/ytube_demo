@@ -12,7 +12,6 @@ export const addComment = async (req, res, next) => {
     next(error);
   }
 };
-
 export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
@@ -23,6 +22,15 @@ export const deleteComment = async (req, res, next) => {
     } else {
       return next(createError(403, "You can delete only your comment."));
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getComments = async (req, res, next) => {
+  try {
+    const comments = await Comment.find({ videoId: req.params.videoId });
+    res.status(200).json(comments);
   } catch (error) {
     next(error);
   }
