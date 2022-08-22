@@ -93,20 +93,27 @@ const Menu = ({ setDarkMode, darkMode }) => {
             YouTube
           </Logo>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
           <Item>
             <HomeIcon />
             Home
           </Item>
         </Link>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsOutlinedIcon />
-          Subscriptions
-        </Item>
+        <Link to="trends" style={{ textDecoration: "none", color: "#fff" }}>
+          <Item>
+            <ExploreOutlinedIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link
+          to="subscriptions"
+          style={{ textDecoration: "none", color: "#fff" }}
+        >
+          <Item>
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </Item>
+        </Link>
 
         <Hr />
 
