@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components/macro";
+import axios from "axios";
 import Card from "../components/Card";
 
 const Container = styled.div`
@@ -7,76 +9,24 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const Home = () => {
+const Home = ({ type }) => {
+  const [videos, setVideos] = useState([]);
+  const [errors, setErrors] = useState("");
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      const res = await axios.get(`/videos/${type}`);
+      setVideos(res.data);
+    };
+
+    fetchVideos();
+  }, [type]);
+
   return (
     <Container>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {videos.map((video) => {
+        return <Card key={video._id} video={video} />;
+      })}
     </Container>
   );
 };
