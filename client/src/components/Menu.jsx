@@ -16,6 +16,7 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import logo from "../img/logo.png";
 
@@ -84,6 +85,8 @@ const Title = styled.h2`
 `;
 
 const Menu = ({ setDarkMode, darkMode }) => {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <Container>
       <Wrapper>
@@ -127,18 +130,20 @@ const Menu = ({ setDarkMode, darkMode }) => {
         </Item>
 
         <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos, comment, and subscribe.
+              <Link to="signin" style={{ textDecoration: "none" }}>
+                <Button>
+                  <AccountCircleOutlinedIcon /> SIGN IN
+                </Button>
+              </Link>
+            </Login>
 
-        <Login>
-          Sign in to like videos, comment, and subscribe.
-          <Link to="signin" style={{ textDecoration: "none" }}>
-            <Button>
-              <AccountCircleOutlinedIcon /> SIGN IN
-            </Button>
-          </Link>
-        </Login>
-
-        <Hr />
-
+            <Hr />
+          </>
+        )}
         <Title>Best Of YTbe</Title>
 
         <Item>
