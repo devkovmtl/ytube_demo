@@ -1,4 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components/macro";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 
 const Container = styled.div`
   display: flex;
@@ -62,20 +67,60 @@ const Link = styled.span`
 `;
 
 const SignIn = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axios.post(`/auth/signin`, { name, email, password });
+      dispatch(loginSuccess(res.data));
+      navigate("/");
+    } catch (error) {
+      dispatch(loginFailure());
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>Sign in</Title>
         <SubTitle>to continue to LamaTube</SubTitle>
-        <Input placeholder="username" onChange={(e) => {}} />
-        <Input type="password" placeholder="password" onChange={(e) => {}} />
+        <Input
+          placeholder="username"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="password"
+          value={password}
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button>Sign in</Button>
         <Title>or</Title>
-        <Button>Signin with Google</Button>
+        <Button onClick={handleLogin}>Signin with Google</Button>
         <Title>or</Title>
-        <Input placeholder="username" onChange={(e) => {}} />
-        <Input placeholder="email" onChange={(e) => {}} />
-        <Input type="password" placeholder="password" onChange={(e) => {}} />
+        <Input
+          placeholder="username"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="password"
+          value={password}
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button>Sign up</Button>
 
         <More>
