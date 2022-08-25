@@ -1,3 +1,5 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 
 const Container = styled.div`
@@ -35,17 +37,25 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const res = await axios.get(`/users/find/${comment.userId}`);
+      setChannel(res.data);
+    };
+    fetchComment();
+  }, [comment.userId]);
+
   return (
     <Container>
-      <Avatar src="" />
+      <Avatar src={channel.img} />
       <Details>
         <Name>
-          John Doe <Date>1 day ago</Date>
+          {channel.name} <Date>1 day ago</Date>
         </Name>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quam!
-        </Text>
+        <Text>{comment.desc}</Text>
       </Details>
     </Container>
   );
